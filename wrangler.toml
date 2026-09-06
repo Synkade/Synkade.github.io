@@ -1,0 +1,25 @@
+name = "dance-hub-web"
+compatibility_date = "2024-09-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+# Base de datos D1 — el "database_id" se obtiene al correr
+# `wrangler d1 create dance_hub_db` (ver README paso 2).
+[[d1_databases]]
+binding = "DB"
+database_name = "dance_hub_db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+# Bucket R2 público (paquetes .bin descargables)
+[[r2_buckets]]
+binding = "PACKAGES_BUCKET"
+bucket_name = "dance-hub-packages"
+
+# Bucket R2 privado (videos de moderación, gameplay+cámara)
+[[r2_buckets]]
+binding = "MODERATION_BUCKET"
+bucket_name = "dance-hub-moderation-videos"
+
+# Variables no secretas (secretos reales van con `wrangler pages secret put`)
+[vars]
+API_BASE_URL = "https://your-project.pages.dev"
